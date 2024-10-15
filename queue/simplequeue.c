@@ -35,6 +35,11 @@ int dequeue(queue* q){
         printf("queue underflow\n");
         return -1;
     }
+    if(q->front==q->rear){
+        int item =q->arr[q->front];
+        q->front=q->rear=-1;
+        return item;
+    }
     int item =q->arr[q->front++];
     return item;
 }
@@ -52,8 +57,20 @@ int main(){
     enqueue(&q,10);
     enqueue(&q, 20);
     enqueue(&q, 30);
+    enqueue(&q,10);
+    enqueue(&q, 20);
 
     printf("%d dequeued from queue\n", dequeue(&q));
+    printf("%d dequeued from queue\n", dequeue(&q));
+    printf("%d dequeued from queue\n", dequeue(&q));
+    printf("%d dequeued from queue\n", dequeue(&q));
+    printf("%d dequeued from queue\n", dequeue(&q));
+    enqueue(&q,10);
+    enqueue(&q, 20);
+    enqueue(&q, 30);
+    enqueue(&q,10);
+    enqueue(&q, 20);
+
     printf("Front element is %d\n", peek(&q));
 
     return 0;
