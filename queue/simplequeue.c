@@ -40,7 +40,11 @@ int dequeue(queue* q){
         q->front=q->rear=-1;
         return item;
     }
-    int item =q->arr[q->front++];
+    int item =q->arr[q->front];
+    for(int i=0;i<q->rear;i++){
+        q->arr[i]=q->arr[i+1];
+    }
+    q->rear--;
     return item;
 }
 int peek(queue* q){
@@ -59,7 +63,7 @@ int main(){
     enqueue(&q, 30);
 
     printf("%d dequeued from queue\n", dequeue(&q));
-
+    
     printf("Front element is %d\n", peek(&q));
 
     return 0;
