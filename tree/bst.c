@@ -101,6 +101,20 @@ void levelorder(n* root){
         }
     }
 }
+void searchnode(n* root,int key){
+    if (root==NULL) return;
+    if (root->data==key){
+        printf("%d founded",key);
+    }else{
+        if(key<root->data){
+            searchnode(root->left,key);
+        }
+        else if(key>root->data){
+            searchnode(root->right,key);
+        }
+    }
+    return;
+}
 
 int main(){
     n* root=NULL;
@@ -134,6 +148,7 @@ int main(){
     printf("Inorder traversal after deletion: ");
     inorder(root);
     printf("\n");
+    searchnode(root,13);
 
     return 0;
 }
