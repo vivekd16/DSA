@@ -19,6 +19,28 @@ void insertatbeginning(node** head_ref,int new_data){
     *head_ref=new_node;
 }
 
+void insertatpos(node** head_ref,int data ,int pos){
+    node* new_node=(node*)malloc(sizeof(node));
+    new_node->data=data;
+    new_node->next=NULL;
+    new_node->prev=NULL;
+    if(head_ref==NULL){
+        (*head_ref)=new_node;
+        return;
+    }
+    int count=pos-1;
+    node* ptr=*head_ref;
+    while(count!=1 & ptr->next!=NULL){
+        ptr=ptr->next;
+        count--;
+    }
+    new_node->next=ptr->next;
+    new_node->prev=ptr;
+    ptr->next->prev=new_node;
+    ptr->next=new_node;
+    
+}
+
 void insertatend(node** head_ref,int new_data){
     node* new_node=(node*)malloc(sizeof(node));
     node* last=*head_ref;
@@ -106,6 +128,7 @@ int main(){
     insertatbeginning(&head,5);
     insertatend(&head, 15);
     insertatbeginning(&head, 2);
+    insertatpos(&head,15,3);
     printf("Doubly Linked List:\n");
     printlist(head);
 
