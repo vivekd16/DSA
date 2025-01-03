@@ -43,6 +43,20 @@ void insertatend(node** head_ref,int new_data){
     }
 }
 
+void insertatpos(node** head_ref,int data,int pos){
+    node* new_node=(node*)malloc(sizeof(node));
+    new_node->data=data;
+    new_node->next=NULL;
+    int count=pos-1;
+    node* ptr=*head_ref;
+    while(count!=1 & ptr->next!=*head_ref){
+        ptr=ptr->next;
+        count--;
+    }
+    new_node->next=ptr->next;
+    ptr->next=new_node;
+}
+
 void deletenode(node** head_ref,int key){
     if(*head_ref==NULL)return;
     node *temp=*head_ref,*prev=NULL;
@@ -95,7 +109,7 @@ int main() {
     insertatbeginning(&head, 5);
     insertatend(&head, 20);
     insertatbeginning(&head, 1);
-
+    insertatpos(&head,15,3);
     printf("Circular Linked List:\n");
     printlist(head);
 
